@@ -6,12 +6,9 @@ import com.stackroute.keepnote.model.KeepNote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /*Annotate the class with @Controller annotation. @Controller annotation is used to mark
@@ -30,22 +27,21 @@ public class NoteController {
 	@RequestMapping("/")
     public String getAllNotes(Model model){
 	    List<KeepNote> keepNotes = noteDAO.getAllNotes();
-	    model.addAttribute("notes", keepNotes);
+	    KeepNote note = new KeepNote();
+		model.addAttribute("keepNote", note);			// model attribute for the form
+	    model.addAttribute("notes", keepNotes);			// model attribute for the list
 		for (KeepNote keepNote : keepNotes){
 			System.out.println(keepNote);
 		}
 		System.out.println();
 	    return "index";
     }
-
+	// why the time wouldn't come.. the form now has a layer of an instance of keep note, and I need to know
+	// the time when the user clicks on the save button
 	@PostMapping("/saveNote")
-	public String save(HttpServletRequest httpServletRequest){
-		int Id = Integer.parseInt(httpServletRequest.getParameter("noteId"));
-		String title = httpServletRequest.getParameter("noteTitle");
-		String content = httpServletRequest.getParameter("noteContent");
-		String status = httpServletRequest.getParameter("noteStatus");
-		KeepNote keepNote = new KeepNote(title, content, status);
-		noteDAO.saveNote(keepNote);
+	public String save(@ModelAttribute("keepNote") KeepNote note){
+		note.setCreatedAt(LocalDateTime.now());
+		noteDAO.saveNote(note);
 		return "redirect:/";
 	}
 
@@ -55,4 +51,18 @@ public class NoteController {
 		noteDAO.deleteNote(noteId);
 		return "redirect:/";
 	}
+
+	@GetMapping("/updateNote")
+	public String updateForm(@RequestParam("noteId") int noteId, Model model) throws Exception {
+    	KeepNote note = noteDAO.getNoteById(noteId);
+    	model.addAttribute("keepNote", note);
+    	return "update";
+	}
+
+	@PostMapping("/saveUpdatedNote")
+	public String saveUpdatedNote(@ModelAttribute("keepNote") KeepNote note){
+		noteDAO.saveNote(note);
+		return "redirect:/";
+	}
+
 }

@@ -14,5 +14,13 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
+
+	<servlet>
+		<servlet-name>h2-console</servlet-name>
+		<servlet-class>org.h2.server.web.WebServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>h2-console</servlet-name>
+		<url-pattern>/admin/h2/*</url-pattern>
+	</servlet-mapping>
 </web-app>

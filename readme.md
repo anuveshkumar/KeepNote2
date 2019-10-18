@@ -13,7 +13,7 @@ This server-side application will handle HTTP requests, execute some domain spec
 
 ### Problem Statement
 
-In this case study: Keep Note Step 1, we will develop a monolithic application which will get the note Id,title,content and status from the user using a form (JSP/HTML), persist the data in Array List and display all notes with details such as note id,note title, note content,note status and LocalDateTime of posting in a reverse chronological order (atest note first).
+In this case study: Keep Note Step 1, we will develop a monolithic application which will get the keepNote Id,title,content and status from the user using a form (JSP/HTML), persist the data in Array List and display all keepNotes with details such as keepNote id,keepNote title, keepNote content,keepNote status and LocalDateTime of posting in a reverse chronological order (atest keepNote first).
 
 **Note: For detailed clarity on the class files, kindly go thru the Project Structure**
 ### Expected solution
@@ -21,8 +21,8 @@ In this case study: Keep Note Step 1, we will develop a monolithic application w
  When the user enters the Note ID, Note Title, Note Content, Note Status and clicks on submit button, it gets stored in the array list and later render in tabular column.
  
 ### Following are the broad tasks:
-1. Display the list of notes from the array list. Each note should contain Note ID, Title, Content, Status and created date. 
-2. Add a new note which should contain the Note ID, Title, Content and Status.
+1. Display the list of keepNotes from the array list. Each keepNote should contain Note ID, Title, Content, Status and created date. 
+2. Add a new keepNote which should contain the Note ID, Title, Content and Status.
 3. Make sure to pass all the Unit test cases locally and on Hobbes.
 
 ### Steps to be followed :
@@ -34,11 +34,11 @@ In this case study: Keep Note Step 1, we will develop a monolithic application w
     Step 4: Go through web.xml
     Step 5: In dispatcher-servlet.xml, add base packages to scan and define the bean for view resolver.
     Step 6: In Note.java file (which is considered as Model class), declare all the necessary variables for the model.
-    Step 7: In NoteRepository.java, create methods to add/retrieve/update/delete notes from the Array List. 
-       Also Write a method which is used to retrieve all notes from array list.
+    Step 7: In NoteRepository.java, create methods to add/retrieve/update/delete keepNotes from the Array List. 
+       Also Write a method which is used to retrieve all keepNotes from array list.
     Step 8: Run the test cases for NoteRepository(NoteRepositoryTest.java)
     Step 9: In NoteController.java, get the application context from resources/beans.xml file using ClassPathXmlApplicationContext() class.Also get Note and NoteRepository objects from the application 			context.Annotate the NoteController.java with @Controller annotation.
-    	Define a handler method to read the existing notes from the ArrayList, to read the Note data from requested parameters and save the new note in the Array List and delete a note.
+    	Define a handler method to read the existing keepNotes from the ArrayList, to read the Note data from requested parameters and save the new keepNote in the Array List and delete a keepNote.
     Step 10: Run the testcases for NoteController (NoteControllerTest.java)
     Step 11: Design a form with four text boxes (Note id, title, content and status) and a submit button and A table which shows Note id, title, content, status and the created date.
 

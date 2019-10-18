@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,12 +12,16 @@
 		 button. Handle errors like empty fields -->
     <div>
         <form action="saveNote" method="POST">
+
         Note ID: <br><input type="int" name="noteId"
         required data-required-message="Field is mandatory"
         pattern="\d{1-14}" data-pattern-mismatch="Translate('Please Enter a Number')"
         title="Please Enter a Number"><br>
+
         Title: <br><input type="text" name="noteTitle"><br>
+
         Content: <br><input type="text" name="noteContent"><br>
+
         Status: <br><select name="noteStatus" >
             <option value="To Start">To Start</option>
             <option value="Ongoing">Ongoing</option>

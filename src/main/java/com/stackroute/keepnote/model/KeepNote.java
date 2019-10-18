@@ -1,32 +1,37 @@
 package com.stackroute.keepnote.model;
 
-import org.springframework.stereotype.Component;
-
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /*
  * The class "Note" will be acting as the data model for the Note data in the ArrayList.
  */
-@Component
-public class Note {
+//@Component
+@Entity
+@Table(name = "keepNotes")
+public class KeepNote {
 
-	/*
-	 * This class should have five fields (noteId, noteTitle, noteContent,
-	 * noteStatus and createdAt). This class should also contain the getters and
-	 * setters for the fields. The value of createdAt should not be accepted from
-	 * the user but should be always initialized with the system date
-	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "note_id")
 	private int noteId;
+
+	@Column(name = "note_title")
 	private String noteTitle;
+
+	@Column(name = "note_content")
 	private String noteContent;
+
+	@Column(name = "note_status")
 	private String noteStatus;
+
+	@Column(name = "creation_date")
 	private LocalDateTime createdAt;
 
-	public Note() {
+	public KeepNote() {
 	}
 
-    public Note(int noteId, String noteTitle, String noteContent, String noteStatus) {
-        this.noteId = noteId;
+    public KeepNote(String noteTitle, String noteContent, String noteStatus) {
         this.noteTitle = noteTitle;
         this.noteContent = noteContent;
         this.noteStatus = noteStatus;
